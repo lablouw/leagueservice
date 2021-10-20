@@ -1,0 +1,53 @@
+POST http://localhost:9050/rankingService/v1/processRawLeagueData
+Content-Type: text/plain
+
+Lions 3, Snakes 3
+Tarantulas 1, FC Awesome 0
+Lions 1, FC Awesome 1
+Tarantulas 3, Snakes 1
+Lions 4, Grouches 0
+
+
+###
+
+POST http://localhost:9050/rankingService/v1/processLeagueData
+Content-Type: application/json
+
+{
+  "matches":[
+    {
+      "team1": "Lions",
+      "team2": "Snakes",
+      "score1": 3,
+      "score2": 3
+    },
+    {
+      "team1": "Tarantulas",
+      "team2": "FC Awesome",
+      "score1": 1,
+      "score2": 0
+    },
+    {
+      "team1": "Lions",
+      "team2": "FC Awesome",
+      "score1": 1,
+      "score2": 1
+    },
+    {
+      "team1": "Tarantulas",
+      "team2": "Snakes",
+      "score1": 3,
+      "score2": 1
+    },
+    {
+      "team1": "Lions",
+      "team2": "Grouches",
+      "score1": 4,
+      "score2": 0
+    }
+  ]
+}
+
+###
+
+GET http://localhost:9050/rankingService/v1/testException
