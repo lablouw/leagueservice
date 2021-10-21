@@ -16,14 +16,16 @@ public class ValidationUtils {
 	private ValidationUtils() {
 	}
 
-	private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	public static ResponseEntity<List<String>> validate(Object... objects) {
-		List<String> validationFailures = new ArrayList<>();
+		return validateInternal(new ArrayList<>(), objects);
+	}
 
+	private static ResponseEntity<List<String>> validateInternal(List<String> validationFailures, Object... objects) {
 		for (Object o : objects) {
 			if (o instanceof Iterable) {
-				((Iterable)o).forEach(o1 -> validateSingleObject(o1, validationFailures));
+				((Iterable)o).forEach(o1 -> validateInternal(validationFailures, o1));
 			} else {
 				validateSingleObject(o, validationFailures);
 			}

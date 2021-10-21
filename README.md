@@ -35,12 +35,12 @@ or in your favorite IDE.
 The server runs on port 9000 by default.
 
 #### *3.2.1 Processing raw data*
-The endpoint for processing raw league data is http://localhost:9000/rankingService/v1/processRawLeagueData. The raw data passed as a plaintext body.
+The endpoint for processing raw league data is http://localhost:9000/v1/rankingService/processRawLeagueData. The raw data passed as a plaintext body.
 
 Note: No input validation is performed in this mode.
 ```
 curl --request POST \
-  --url http://localhost:9000/rankingService/v1/processRawLeagueData \
+  --url http://localhost:9000/v1/rankingService/processRawLeagueData \
   --header 'content-type: text/plain' \
   --data 'Lions 3, Snakes 3
 Tarantulas 1, FC Awesome 0
@@ -50,7 +50,7 @@ Lions 4, Grouches 0'
 ```
 
 #### *3.2.2 Processing json formatted data*
-Endpoint: http://localhost:9000/rankingService/v1/processLeagueData
+Endpoint: http://localhost:9000/v1/rankingService/processLeagueData
 
 This endpoint consumes and produces json data.
 
@@ -60,7 +60,7 @@ Note: Validation is performed on input data:
 3. At least one matchResult is required in list
 ```
 curl --request POST \
-  --url http://localhost:9000/rankingService/v1/processLeagueData \
+  --url http://localhost:9000/v1/rankingService/processLeagueData \
   --header 'content-type: application/json' \
   --data '{
   "matches":[

@@ -26,6 +26,7 @@ public class RankingsManagerImpl implements RankingsManager {
 
 	@Override
 	public LeagueResult processLeagueData(LeagueData leagueData) {
+		//teamName, score
 		Map<String, Integer> processedData = new HashMap<>();
 
 		for (MatchData matchResult : leagueData.getMatches()) {

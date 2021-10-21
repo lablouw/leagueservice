@@ -22,7 +22,7 @@ import java.util.List;
 // No non-domain classes are to be passed into the manager layer, mapping between api and domain classes to take place here.
 
 @RestController
-@RequestMapping("/rankingService/v1")
+@RequestMapping("/v1/rankingService")
 @Slf4j
 public class RankingsServiceV1 {
 

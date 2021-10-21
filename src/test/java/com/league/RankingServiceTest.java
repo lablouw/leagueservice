@@ -29,7 +29,7 @@ public class RankingServiceTest {
 	@Test
 	public void test_processRawLeagueData() throws Exception {
 		String content = "Lions 3, Snakes 3";
-		String uri = "/rankingService/v1/processRawLeagueData";
+		String uri = "/v1/rankingService/processRawLeagueData";
 
 		mvc.perform(MockMvcRequestBuilders
 						.post(uri)
@@ -43,7 +43,7 @@ public class RankingServiceTest {
 
 	@Test
 	public void test_processLeagueData() throws Exception {
-		String uri = "/rankingService/v1/processLeagueData";
+		String uri = "/v1/rankingService/processLeagueData";
 
 		//correct format
 		mvc.perform(MockMvcRequestBuilders
