@@ -1,7 +1,7 @@
 package com.league.mapper;
 
-import com.league.api.model.MatchResultDto;
-import com.league.domain.model.MatchResult;
+import com.league.api.v1.model.TeamResultDto;
+import com.league.domain.model.TeamResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
@@ -10,5 +10,5 @@ import org.mapstruct.factory.Mappers;
 public interface MatchResultMapper {
 	MatchResultMapper INSTANCE = Mappers.getMapper(MatchResultMapper.class);
 
-	MatchResultDto mapToV1(MatchResult value);
+	TeamResultDto mapToV1(TeamResult value);
 }

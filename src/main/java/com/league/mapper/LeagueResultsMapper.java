@@ -1,6 +1,6 @@
 package com.league.mapper;
 
-import com.league.api.model.LeagueResultDto;
+import com.league.api.v1.model.LeagueResultDto;
 import com.league.domain.model.LeagueResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

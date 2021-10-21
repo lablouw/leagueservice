@@ -13,16 +13,16 @@ import java.util.List;
 @Data
 public class LeagueResult {
 
-	List<MatchResult> teamResults;
+	List<TeamResult> teamResults;
 
 	public String toFriendlyString() {
 		StringBuilder s = new StringBuilder();
 		int pos = 1;
-		for (MatchResult tr : teamResults) {
+		for (TeamResult tr : teamResults) {
 			s.append(pos++).append(". ").append(tr.toFriendlyString()).append("\n");
 		}
 
-		return s.toString();
+		return s.substring(0,s.length()-1);
 	}
 
 

@@ -1,7 +1,6 @@
 package com.league.domain.service.v1;
 
-import com.league.api.model.LeagueDataDto;
-import com.league.aspect.UncaughtExceptionHandler;
+import com.league.api.v1.model.LeagueDataDto;
 import com.league.domain.manager.RankingsManager;
 import com.league.domain.model.LeagueData;
 import com.league.domain.model.LeagueResult;
@@ -9,7 +8,6 @@ import com.league.mapper.LeagueDataMapper;
 import com.league.mapper.LeagueResultsMapper;
 import com.league.utils.ValidationUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,16 +24,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/rankingService/v1")
 @Slf4j
-@UncaughtExceptionHandler
 public class RankingsServiceV1 {
 
-	@Autowired
-	private RankingsManager rankingsManager;
+	private final RankingsManager rankingsManager;
+
+	public RankingsServiceV1(RankingsManager rankingsManager) {
+		this.rankingsManager = rankingsManager;
+	}
 
 	@PostMapping(value = "/processRawLeagueData", consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity processRawLeagueData(@RequestBody String leagueDataText) {
+	public ResponseEntity<String> processRawLeagueData(@RequestBody String leagueDataText) {
 
-		LeagueData leagueData = new LeagueData(leagueDataText);
+		LeagueData leagueData = LeagueData.fromString(leagueDataText);
 		LeagueResult leagueResult = rankingsManager.processLeagueData(leagueData);
 
 		return ResponseEntity.ok().body(leagueResult.toFriendlyString());

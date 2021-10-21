@@ -6,4 +6,5 @@ import com.league.domain.model.LeagueResult;
 public interface RankingsManager {
 
 	LeagueResult processLeagueData(LeagueData leagueData);
+
 }

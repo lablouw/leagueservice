@@ -14,13 +14,16 @@ import java.util.List;
 @Data
 public class LeagueData {
 
-	List<Match> matches = new ArrayList<>();
+	List<MatchData> matches = new ArrayList<>();
 
-	public LeagueData(String data) {
+	public static LeagueData fromString(String data) {
+		LeagueData ld = new LeagueData();
 		for (String matchData : data.split("\n")) {
-			Match match = new Match(matchData.split(","));
-			matches.add(match);
+			MatchData matchResult = MatchData.fromStrings(matchData.split(","));
+			ld.getMatches().add(matchResult);
 		}
+
+		return ld;
 	}
 
 
