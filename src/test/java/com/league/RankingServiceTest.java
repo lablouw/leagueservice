@@ -64,7 +64,7 @@ public class RankingServiceTest {
 				.andExpect(status().isBadRequest());
 
 		ld = constructLeagueData();
-		ld.getMatches().get(0).setScore2(-1);
+		ld.getMatches().get(0).setScore1(-1);
 		mvc.perform(MockMvcRequestBuilders
 						.post(uri)
 						.contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -73,7 +73,7 @@ public class RankingServiceTest {
 				.andExpect(status().isBadRequest());
 
 		ld = constructLeagueData();
-		ld.getMatches().get(0).setScore1(-1);
+		ld.getMatches().get(0).setScore2(-1);
 		mvc.perform(MockMvcRequestBuilders
 						.post(uri)
 						.contentType(MediaType.APPLICATION_JSON_VALUE)
