@@ -24,7 +24,7 @@ Run the jar file from the command line with the league data file's path as the o
 ```
 java -jar target/league-service-1.0.0-SNAPSHOT.jar src/main/resources/LeagueData.txt
 ```
-Note: No input validation is performed in this mode.
+_Note: No input validation is performed in this mode._
 
 ### *3.2. Running as a REST microservice*
 Start the service as a Spring Boot microservice:
@@ -44,12 +44,12 @@ docker run -p9000:9000 league-service
 ## *4. Using the service*
 Two entry points are provided for processing league data.
 
-###4.1. Processing raw data
-URL: http://localhost:9000/league-service/v1/rankingService/processRawLeagueData
+### *4.1. Processing raw data*
+**Url**: (POST) http://localhost:9000/league-service/v1/rankingService/processRawLeagueData
 
-HEADERS: content-type: text/plain
+**Headers**: content-type: text/plain
 
-BODY: (plaintext data)
+**Body**: (plaintext data)
 
 ```
 curl --request POST \
@@ -64,11 +64,11 @@ Lions 4, Grouches 0'
 _Note: No input validation is performed in this mode._
 
 ### *4.2. Processing json formatted data*
-URL: http://localhost:9000/league-service/v1/rankingService/processLeagueData
+**Url**: (POST) http://localhost:9000/league-service/v1/rankingService/processLeagueData
 
-HEADERS: content-type: application/json
+**Headers**: content-type: application/json
 
-BODY: (json data)
+**Body**: (json data)
 
 ```
 curl --request POST \
@@ -117,5 +117,8 @@ _Note: Validation is performed on input data:_
 ## **5. Documentation**
 ### **5.1. Yaml**
 http://localhost:9000/league-service/v2/api-docs
-### **5.2. Swagger UI**
+### **5.2. Testing**
+**Swagger UI**:
 http://localhost:9000/league-service/swagger-ui.html
+
+**src/test/rest/test.rest** (requires IntelliJ IDEA)
