@@ -5,6 +5,7 @@ League Service Demo as per requirements.
 
 1. Java runtime
 2. Maven
+3. Docker (optional)
 
 ## **2. Setup**
     
@@ -18,26 +19,38 @@ mvn clean install
 ```
 
 ## **3. Running the service**
-There are three ways to process league data with the league-service
-### *3.1. From the command line*
+### *3.1. Running from the command line*
 Run the jar file from the command line with the league data file's path as the only parameter. Eg: using the demo file provided, and running from the project's root directory, the command would be
 ```
 java -jar target/league-service-1.0.0-SNAPSHOT.jar src/main/resources/LeagueData.txt
 ```
 Note: No input validation is performed in this mode.
 
-### *3.2. As a rest microservice*
-Start the service as a spring boot microservice:
+### *3.2. Running as a REST microservice*
+Start the service as a Spring Boot microservice:
 ```
 java -jar target/league-service-1.0.0-SNAPSHOT.jar
 ```
 or in your favorite IDE.
 The server runs on port 9000 by default.
 
-#### *3.2.1 Processing raw data*
-The endpoint for processing raw league data is http://localhost:9000/league-service/v1/rankingService/processRawLeagueData. The raw data passed as a plaintext body.
+Alternatively it can be run in a Docker container by executing the following from the project root directory:
+```
+mvn clean install
+docker build --tag=league-service:latest .
+docker run -p9000:9000 league-service
+```
 
-Note: No input validation is performed in this mode.
+## *4. Using the service*
+Two entry points are provided for processing league data.
+
+###4.1. Processing raw data
+URL: http://localhost:9000/league-service/v1/rankingService/processRawLeagueData
+
+HEADERS: content-type: text/plain
+
+BODY: (plaintext data)
+
 ```
 curl --request POST \
   --url http://localhost:9000/league-service/v1/rankingService/processRawLeagueData \
@@ -48,16 +61,15 @@ Lions 1, FC Awesome 1
 Tarantulas 3, Snakes 1
 Lions 4, Grouches 0'
 ```
+_Note: No input validation is performed in this mode._
 
-#### *3.2.2 Processing json formatted data*
-Endpoint: http://localhost:9000/league-service/v1/rankingService/processLeagueData
+### *4.2. Processing json formatted data*
+URL: http://localhost:9000/league-service/v1/rankingService/processLeagueData
 
-This endpoint consumes and produces json data.
+HEADERS: content-type: application/json
 
-Note: Validation is performed on input data:
-1. Team names may not be blank or null
-2. scores must be >=0
-3. At least one matchResult is required in list
+BODY: (json data)
+
 ```
 curl --request POST \
   --url http://localhost:9000/league-service/v1/rankingService/processLeagueData \
@@ -97,9 +109,13 @@ curl --request POST \
   ]
 }'
 ```
+_Note: Validation is performed on input data:_
+1. _Team names may not be blank or null_
+2. _Scores must be >=0_
+3. _At least one matchResult is required in the list_
 
-## **4. Documentation**
-### **4.1 Yaml**
+## **5. Documentation**
+### **5.1. Yaml**
 http://localhost:9000/league-service/v2/api-docs
-### **4.2 Swagger UI**
+### **5.2. Swagger UI**
 http://localhost:9000/league-service/swagger-ui.html
