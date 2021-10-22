@@ -39,6 +39,9 @@ public class ValidationUtils {
 	}
 
 	private static void validateSingleObject(Object o, List<String> validationFailures) {
+		if (o == null) {
+			return;
+		}
 		Set<ConstraintViolation<Object>> constraintViolations = validator.validate(o);
 		if (!CollectionUtils.isEmpty(constraintViolations)) {
 			validationFailures.addAll(constraintViolations

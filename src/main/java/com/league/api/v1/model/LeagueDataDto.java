@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -18,6 +17,6 @@ import java.util.List;
 public class LeagueDataDto {
 
 	@NotEmpty(message = "At least one match must be supplied")
-	List<MatchDataDto> matches = new ArrayList<>();
+	List<MatchDataDto> matches;
 
 }
