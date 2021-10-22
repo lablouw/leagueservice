@@ -100,6 +100,6 @@ curl --request POST \
 
 ## **4. Documentation**
 ### **4.1 Yaml**
-http://localhost:9000/v2/api-docs
+http://localhost:9000/league-service/v2/api-docs
 ### **4.2 Swagger UI**
-http://localhost:9000/swagger-ui.html
+http://localhost:9000/league-service/swagger-ui.html
