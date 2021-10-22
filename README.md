@@ -112,7 +112,7 @@ curl --request POST \
 _Note: Validation is performed on input data:_
 1. _Team names may not be blank or null_
 2. _Scores must be >=0_
-3. _At least one matchResult is required in the list_
+3. _At least one match is required in the list_
 
 ## **5. Documentation**
 ### **5.1. Yaml**

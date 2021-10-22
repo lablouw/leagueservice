@@ -7,8 +7,8 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, disableSubMappingMethodsGeneration = true)
-public interface MatchResultMapper {
-	MatchResultMapper INSTANCE = Mappers.getMapper(MatchResultMapper.class);
+public interface TeamResultMapper {
+	TeamResultMapper INSTANCE = Mappers.getMapper(TeamResultMapper.class);
 
 	TeamResultDto mapToV1(TeamResult value);
 }

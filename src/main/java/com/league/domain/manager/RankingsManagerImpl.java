@@ -33,20 +33,20 @@ public class RankingsManagerImpl implements RankingsManager {
 		//teamName, score
 		Map<String, Integer> processedData = new HashMap<>();
 
-		for (MatchData matchResult : leagueData.getMatches()) {
-			log.info("Processing match [matchResult={}]", matchResult);
-			processedData.computeIfAbsent(matchResult.getTeam1(), t -> processedData.put(t, 0));
-			processedData.computeIfAbsent(matchResult.getTeam2(), t -> processedData.put(t, 0));
+		for (MatchData matchData : leagueData.getMatches()) {
+			log.info("Processing match [matchData={}]", matchData);
+			processedData.computeIfAbsent(matchData.getTeam1(), t -> processedData.put(t, 0));
+			processedData.computeIfAbsent(matchData.getTeam2(), t -> processedData.put(t, 0));
 
-			if (matchResult.getScore1() > matchResult.getScore2()) {
-				processedData.put(matchResult.getTeam1(), processedData.get(matchResult.getTeam1()) + winningScore);
-				processedData.put(matchResult.getTeam2(), processedData.get(matchResult.getTeam2()) + losingScore);
-			} else if (matchResult.getScore2() > matchResult.getScore1()) {
-				processedData.put(matchResult.getTeam1(), processedData.get(matchResult.getTeam1()) + losingScore);
-				processedData.put(matchResult.getTeam2(), processedData.get(matchResult.getTeam2()) + winningScore);
+			if (matchData.getScore1() > matchData.getScore2()) {
+				processedData.put(matchData.getTeam1(), processedData.get(matchData.getTeam1()) + winningScore);
+				processedData.put(matchData.getTeam2(), processedData.get(matchData.getTeam2()) + losingScore);
+			} else if (matchData.getScore2() > matchData.getScore1()) {
+				processedData.put(matchData.getTeam1(), processedData.get(matchData.getTeam1()) + losingScore);
+				processedData.put(matchData.getTeam2(), processedData.get(matchData.getTeam2()) + winningScore);
 			} else {
-				processedData.put(matchResult.getTeam1(), processedData.get(matchResult.getTeam1()) + drawScore);
-				processedData.put(matchResult.getTeam2(), processedData.get(matchResult.getTeam2()) + drawScore);
+				processedData.put(matchData.getTeam1(), processedData.get(matchData.getTeam1()) + drawScore);
+				processedData.put(matchData.getTeam2(), processedData.get(matchData.getTeam2()) + drawScore);
 			}
 		}
 

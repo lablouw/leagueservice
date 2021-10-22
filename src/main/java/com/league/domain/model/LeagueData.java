@@ -18,9 +18,9 @@ public class LeagueData {
 
 	public static LeagueData fromString(String data) {
 		LeagueData ld = new LeagueData();
-		for (String matchData : data.split("\n")) {
-			MatchData matchResult = MatchData.fromStrings(matchData.split(","));
-			ld.getMatches().add(matchResult);
+		for (String matchString : data.split("\n")) {
+			MatchData matchData = MatchData.fromStrings(matchString.split(","));
+			ld.getMatches().add(matchData);
 		}
 
 		return ld;

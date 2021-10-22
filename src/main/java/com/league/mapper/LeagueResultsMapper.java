@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, disableSubMappingMethodsGeneration = true, uses = MatchResultMapper.class)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, disableSubMappingMethodsGeneration = true, uses = TeamResultMapper.class)
 @SuppressWarnings("squid:S1214")
 public interface LeagueResultsMapper {
 	LeagueResultsMapper INSTANCE = Mappers.getMapper(LeagueResultsMapper.class);
