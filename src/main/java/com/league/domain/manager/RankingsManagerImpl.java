@@ -4,6 +4,7 @@ import com.league.domain.model.LeagueData;
 import com.league.domain.model.LeagueResult;
 import com.league.domain.model.MatchData;
 import com.league.domain.model.TeamResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Comparator;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class RankingsManagerImpl implements RankingsManager {
 
 	@Value("${rankings.team.winning.score}")
@@ -26,10 +28,13 @@ public class RankingsManagerImpl implements RankingsManager {
 
 	@Override
 	public LeagueResult processLeagueData(LeagueData leagueData) {
+		log.info("Processing league [matches={}]", leagueData.getMatches().size());
+
 		//teamName, score
 		Map<String, Integer> processedData = new HashMap<>();
 
 		for (MatchData matchResult : leagueData.getMatches()) {
+			log.info("Processing match [matchResult={}]", matchResult);
 			processedData.computeIfAbsent(matchResult.getTeam1(), t -> processedData.put(t, 0));
 			processedData.computeIfAbsent(matchResult.getTeam2(), t -> processedData.put(t, 0));
 
