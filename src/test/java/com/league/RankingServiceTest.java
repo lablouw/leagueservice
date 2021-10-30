@@ -100,6 +100,17 @@ public class RankingServiceTest {
 				.andExpect(status().isBadRequest());
 
 
+		ld = constructLeagueData();
+		ld.getMatches().get(0).setTeam1("ABC");
+		ld.getMatches().get(0).setTeam2("ABC");
+		mvc.perform(MockMvcRequestBuilders
+						.post(uri)
+						.contentType(MediaType.APPLICATION_JSON_VALUE)
+						.content(gson.toJson(ld))
+						.accept(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isBadRequest());
+
+
 	}
 
 	private LeagueData constructLeagueData() {

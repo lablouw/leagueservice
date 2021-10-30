@@ -1,4 +1,4 @@
-package com.league.utils;
+package com.league.util.validation;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ValidationUtils {
+public class ValidationUtil {
 
-	private ValidationUtils() {
+	private ValidationUtil() {
 	}
 
 	private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -46,7 +46,7 @@ public class ValidationUtils {
 		if (!CollectionUtils.isEmpty(constraintViolations)) {
 			validationFailures.addAll(constraintViolations
 					.stream()
-					.map(cv -> cv.getPropertyPath().toString() + ": " + cv.getMessage())
+					.map(cv -> cv.getLeafBean().toString() + ": " + cv.getMessage())
 					.collect(Collectors.toList())
 			);
 		}

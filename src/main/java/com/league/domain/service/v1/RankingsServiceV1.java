@@ -6,7 +6,7 @@ import com.league.domain.model.LeagueData;
 import com.league.domain.model.LeagueResult;
 import com.league.mapper.LeagueDataMapper;
 import com.league.mapper.LeagueResultsMapper;
-import com.league.utils.ValidationUtils;
+import com.league.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +43,7 @@ public class RankingsServiceV1 {
 
 	@PostMapping(value = "/processLeagueData", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity processLeagueData(@RequestBody LeagueDataDto leagueDataDto) {
-		ResponseEntity<List<String>> re = ValidationUtils.validate(leagueDataDto, leagueDataDto.getMatches());
+		ResponseEntity<List<String>> re = ValidationUtil.validate(leagueDataDto, leagueDataDto.getMatches());
 		if (re != null) {
 			return re;
 		}
